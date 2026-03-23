@@ -6,7 +6,7 @@ pipeline
    agent any
    tools
    {
-      maven "maven-3.9.6"
+      maven "maven-3.9.14"
    }
    stages
    {
@@ -15,7 +15,7 @@ pipeline
               steps
               {
                  
-                 git branch: 'qa', url: 'https://github.com/kkdevopsb7/maven-webapplication-project-kkfunda.git'
+                 git branch: 'qa', url: 'https://github.com/kkdevopsb8/maven-webapplication-project-kkfunda.git'
               }
            }
            stage('compile')
