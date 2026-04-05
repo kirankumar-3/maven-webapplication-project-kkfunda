@@ -97,14 +97,14 @@
 	
 	    <repository>
 	      <id>nexus</id>
-	      <name>KK FUNDA Releases Nexus Repository</name>
-	      <url>http://172.31.40.189:8081/repository/flipkart-release/</url>
+	      <name>ecom-release</name>
+	      <url>http://34.227.225.36:8081/repository/ecom-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>KK FUNDA Snapshot Nexus Repository </name>
-	      <url>http://172.31.40.189:8081/repository/flipkart-snapshot/</url>
+	      <name>ecom-snapshot </name>
+	      <url>http://34.227.225.36:8081/repository/ecom-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
