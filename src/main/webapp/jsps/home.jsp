@@ -23,7 +23,7 @@
         margin: 10px 0;
     }
     .info-card {
-        background: white;
+        background: pink;
         border-radius: 10px;
         box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
         padding: 20px;
