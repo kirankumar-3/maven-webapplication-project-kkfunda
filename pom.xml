@@ -21,7 +21,7 @@
 		<spring.version>5.3.34</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://18.234.172.119:9000/</sonar.host.url>
+		<sonar.host.url>http://100.52.239.110:9000/</sonar.host.url>
 		<sonar.login>squ_25863877bbd1e18083d570c55b9baaaa778910a2</sonar.login>
 		<!--<sonar.password>password</sonar.password> -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -98,13 +98,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>ecom-release</name>
-	      <url>http://34.227.225.36:8081/repository/ecom-release/</url>
+	      <url>http://54.146.198.50:8081/repository/ecom-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>ecom-snapshot </name>
-	      <url>http://34.227.225.36:8081/repository/ecom-snapshot/</url>
+	      <url>http://54.146.198.50:8081/repository/ecom-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
