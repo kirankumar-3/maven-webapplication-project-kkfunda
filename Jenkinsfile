@@ -55,7 +55,8 @@ node {
           
         """
     }*/
-}/*pipeline
+}
+/*pipeline
 {
 	agent any
 	tools
