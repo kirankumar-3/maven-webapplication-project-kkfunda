@@ -55,7 +55,7 @@ node {
           
         """
     }*/
-}
+
 /*pipeline
 {
 	agent any
