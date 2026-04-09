@@ -66,7 +66,7 @@
 
     <!-- Client Info -->
     <div class="info-card">
-        <h3>💻 Client Side Information</h3>
+        <h3>Client Side Information</h3>
         <hr>
         <p><b>Client IP Address:</b> <%= request.getRemoteAddr() %></p>
         <p><b>Client Host Name:</b> <%= request.getRemoteHost() %></p>
