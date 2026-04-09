@@ -1,4 +1,12 @@
 node {
+
+    // 🔁 Poll SCM every 1 minute
+    properties([
+        pipelineTriggers([
+            pollSCM('* * * * *')
+        ])
+    ])
+
     def mavenHome = tool name: "maven3.9.10"
 
     stage('Cloning') {
@@ -8,30 +16,32 @@ node {
     stage('compile') {
         sh "${mavenHome}/bin/mvn compile"
     }
-    stage('build')
-    {
+
+    stage('build') {
         sh "${mavenHome}/bin/mvn clean package"
     }
-    stage('sonar')
-    {
-        sh "${mavenHome}/bin/mvn clean package sonar:sonar "
-    }
-    stage('deploy')
-    {
-        sh "${mavenHome}/bin/mvn clean deploy "
-    }
- stage('Deploy to Tomcat') {
-    withCredentials([usernamePassword(
-        credentialsId: 'tomcat-creds',
-        usernameVariable: 'TOMCAT_USER',
-        passwordVariable: 'TOMCAT_PASS'
-    )]) {
 
-        sh '''
-        curl -v -u $TOMCAT_USER:$TOMCAT_PASS \
-        -T target/*.war \
-        "http://54.87.149.65:8080/manager/text/deploy?path=/myapp&update=true"
-        '''
+    stage('sonar') {
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+
+    stage('deploy') {
+        sh "${mavenHome}/bin/mvn deploy"
+    }
+
+    stage('Deploy to Tomcat') {
+        withCredentials([usernamePassword(
+            credentialsId: 'tomcat-creds',
+            usernameVariable: 'TOMCAT_USER',
+            passwordVariable: 'TOMCAT_PASS'
+        )]) {
+
+            sh '''
+            curl -v -u $TOMCAT_USER:$TOMCAT_PASS \
+            -T target/*.war \
+            "http://54.87.149.65:8080/manager/text/deploy?path=/myapp&update=true"
+            '''
+        }
     }
 }
     /*  stage('Deploy to Tomcat') 
