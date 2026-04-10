@@ -1,4 +1,11 @@
-node {
+
+
+
+
+
+
+//declarative pipie;ine
+/*node {
 	def mavenHome = tool name: "maven3.9.10"
 	echo "git branch Name: ${env.BRANCH_NAME}"
 echo "build number: ${env.BUILD_NUMBER}"
@@ -143,4 +150,5 @@ def notifyBuild(String buildStatus = 'STARTED') {
 	} //stages  ending
 
 } //pipeline ending
+*/
 */
