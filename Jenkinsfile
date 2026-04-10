@@ -1,10 +1,102 @@
 
 
 
+//declarative pipeline
+pipeline {
+    agent any
+
+    tools {
+        maven "maven3.9.10"
+    }
+
+    environment {
+        SLACK_CHANNEL = '#devops-team'   // 🔁 CHANGE THIS to your channel
+    }
+
+    stages {
+
+        stage('Notify Start') {
+            steps {
+                slackSend (
+                    channel: "${SLACK_CHANNEL}",
+                    color: '#FFFF00',
+                    message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+                )
+            }
+        }
+
+        stage ('clone') {
+            steps {
+                git branch: 'dev', url: 'https://github.com/kirankumar-3/maven-webapplication-project-kkfunda.git'
+            }
+        }
+
+        stage ('build') {
+            steps {
+                sh "mvn clean package"
+            }
+        }
+
+        stage ('report') {
+            steps {
+                sh "mvn sonar:sonar"
+            }
+        }
+
+        stage ('deploy to nexus') {
+            steps {
+                sh "mvn deploy"
+            }
+        }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: 'tomcat-creds',  // 🔁 CHANGE THIS to your tomact id
+                    usernameVariable: 'TOMCAT_USER',
+                    passwordVariable: 'TOMCAT_PASS'
+                )]) {
+
+                    sh '''
+                    curl -v -u $TOMCAT_USER:$TOMCAT_PASS \
+                    -T target/*.war \
+                    "http://34.201.120.253:8080/manager/text/deploy?path=/myapp&update=true" // 🔁 CHANGE THIS to your tomcat IP
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+
+        success {
+            slackSend (
+                channel: "${SLACK_CHANNEL}",
+                color: '#00FF00',
+                message: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
+
+        failure {
+            slackSend (
+                channel: "${SLACK_CHANNEL}",
+                color: '#FF0000',
+                message: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
+
+        unstable {
+            slackSend (
+                channel: "${SLACK_CHANNEL}",
+                color: '#FFA500',
+                message: "UNSTABLE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
+    }
+}
 
 
-
-//declarative pipie;ine
+//scripted way pipeline
 /*node {
 	def mavenHome = tool name: "maven3.9.10"
 	echo "git branch Name: ${env.BRANCH_NAME}"
