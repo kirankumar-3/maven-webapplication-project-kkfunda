@@ -1,12 +1,12 @@
 node {
 
     // 🔁 Poll SCM every 1 minute
-    properties([
+   /* properties([
         pipelineTriggers([
             pollSCM('* * * * *')
         ])
     ])
-
+*/
     def mavenHome = tool name: "maven3.9.10"
 
     stage('Cloning') {
