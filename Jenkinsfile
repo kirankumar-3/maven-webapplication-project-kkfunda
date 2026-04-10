@@ -60,7 +60,7 @@ pipeline {
                     sh '''
                     curl -v -u $TOMCAT_USER:$TOMCAT_PASS \
                     -T target/*.war \
-                    "http://34.201.120.253:8080/manager/text/deploy?path=/myapp&update=true" // 🔁 CHANGE THIS to your tomcat IP
+                    "http://34.201.120.253:8080/manager/text/deploy?path=/myapp&update=true" # 🔁 CHANGE THIS to your tomcat IP
                     '''
                 }
             }
