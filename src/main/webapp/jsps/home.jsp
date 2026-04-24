@@ -15,7 +15,7 @@
     }
     header {
         background: linear-gradient(90deg, #007bff, #00c6ff);
-        color: white;
+        color: Yellow ;
         padding: 20px;
         text-align: center;
     }
@@ -46,7 +46,7 @@
 <body>
 
 <header>
-     <h1> WELCOME TO KK FUNDA DEV secOPS </h1> 
+     <h1> Hey!! WELCOME TO KK FUNDA DEV secOPS </h1> 
     <h3>Training | Development | Consulting | KKDEVOPS</h3>
 </header>
 
